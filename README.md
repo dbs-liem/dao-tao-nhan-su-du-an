@@ -37,7 +37,7 @@
 ## 9. Không nên sử dụng các biểu thức trong template
 ## 10. Gọi API trong action và commit data (Vuex)
 ## 11. Sử dụng slot cho component
-## 12. Sử dụng mapState mapGetters mapMutations and mapActions
+## 12. Sử dụng mapState, mapGetters, mapMutations and mapActions
 
 # III. Kết thúc
 - Done
