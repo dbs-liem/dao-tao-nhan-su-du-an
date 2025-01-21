@@ -17,7 +17,7 @@
 - [9. Không nên sử dụng các biểu thức trong template](#9-không-nên-sử-dụng-các-biểu-thức-trong-template)
 - [10. Gọi API trong action và commit data (Vuex)](#10-gọi-API-trong-action-và-commit-data-Vuex)
 - [11. Sử dụng slot cho component](#11-sử-dụng-slot-cho-component)
-- [12. Sử dụng mapState, mapGetters, mapMutations and mapActions](#12-sử-dụng-mapState-,-mapGetters-,-mapMutations-and-mapActions)
+- [12. Sử dụng mapState, mapGetters, mapMutations and mapActions](#12-sử-dụng-mapState-mapGetters-mapMutations-and-mapActions)
 
 [III. Kết thúc](#iii-kết-thúc)
 
@@ -37,7 +37,7 @@
 ## 9. Không nên sử dụng các biểu thức trong template
 ## 10. Gọi API trong action và commit data (Vuex)
 ## 11. Sử dụng slot cho component
-## 12. Sử dụng mapState, mapGetters, mapMutations and mapActions
+## 12. Sử dụng mapState mapGetters mapMutations and mapActions
 
 # III. Kết thúc
 - Done
