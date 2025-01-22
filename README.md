@@ -5,7 +5,7 @@
 - [1. Những việc cần làm](#1-những-việc-cần-làm)
 - [2. Những việc không cần và không nên làm](#2-những-việc-không-cần-và-không-nên-làm)
 
-[II. Best practices with VueJS](#ii-best-practices-with-vue-js)
+[II. Best practices with VueJS](#ii-best-practices-with-vuejs)
 - [1. Luôn sử dụng :key với v-for directive](#1-luôn-sử-dụng-key-với-v-for-directive)
 - [2. Khai báo props với camelCase và kebab-case cho templates](#2-khai-báo-props-với-camelCase-và-kebab-case-cho-templates)
 - [3. Sử dụng kebab-case cho events](#3-sử-dụng-kebab-case-cho-events)
@@ -58,6 +58,7 @@
 - Lưu ý **không tạo sai tên nhánh, merge request**
 - Tránh **code xấu, tên biến vô nghĩa, những code dư thừa không sử dụng,** vì phía KH cũng sẽ review lại code
 - Tránh **sửa đổi CSS liên quan đến những class chung hoặc class nhiều component sử dụng** (Quan trọng)
+
 # II. Best practices with VueJS
 ## 1. Luôn sử dụng :key với v-for directive
 - Thuộc tính này được sử dụng để kiểm tra tính duy nhất của từng mục trong danh sách. Virtual DOM của Vue tạo VNodes trên mỗi mục của danh sách. Vì vậy, nếu không có thuộc tính :key trong các mục danh sách thì Virtual DOM sẽ không xác định được từng mục là riêng biệt. Vì vậy, Virtual DOM sẽ khó phát hiện bất kỳ thay đổi nào đối với một mục danh sách cụ thể.
@@ -71,6 +72,7 @@
     <div v-for="product in products" : key="product.id">{{ product }}</div>
   </template>
   ```
+
 ## 2. Khai báo props với camelCase và kebab-case cho templates
 - Trong JavaScript, tiêu chuẩn đặt tên là `camelCase`, còn trong HTML, tiêu chuẩn đặt tên là `kebab-case`.
 - Ví dụ:
