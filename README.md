@@ -196,14 +196,124 @@
 
 ## 6. Sử dụng PascalCase hoặc kebab-case cho components
 - `PascalCase` hoạt động tốt nhất vì nó được hỗ trợ bởi hầu hết các tính năng tự động điền của `IDE`.
+- Ví dụ:
+   ```
+   BAD!
+     components/
+     |- mycomponent.vue
+     components/
+     |- myComponent.vue
+
+   GOOD!
+     components/
+     |- MyComponent.vue
+     components/
+     |- my-component.vue
+   ```
 
 ## 7. Sử dụng kiểu viết tắt (Use of Shorthands)
+- Có sự nhất quán trong việc sử dụng `directives shorthands` thay cho fullname.
+- Ví dụ: 
+   ```
+    : is short for v-bind
+    @ is short for v-on
+    # is short for v-slot
+   ```
+
 ## 8. Không gọi method đồng thời trong created và watch
+- Một sai lầm phổ biến của lập trình viên Vue (dev) là gọi `method` đồng thời trong `created` và `watch` một cách không cần thiết.
+- Ý nghĩa đằng sau điều này là muốn gọi `method` đó sau khi component được khởi tạo.
+- Tuy nhiên, Vue đã có một giải pháp tích hợp sẵn cho việc này. Và tất cả những gì chúng ta cần làm là tái cấu trúc lại `watcher` một chút và khai báo **2 thuộc tính** sau:
+  - `handler (newVal, oldVal)` – this is our watcher method itself
+  - `immediate: true` – this makes our handler run when our instance is created
+  - Ví dụ:
+     ```
+     BAD!
+       created: () => {
+          this.handleChange();
+        },
+        
+        methods: {
+          handleChange() {
+            // stuff happens
+          }
+        },
+        
+        watch: {
+          property() {
+            this.handleChange();
+          }
+        }
+  
+     GOOD!
+       methods: {
+          handleChange() {
+            // stuff happens
+          }
+        },
+        
+        watch: {
+          property: {
+            immediate: true,
+            handler() {
+              this.handleChange();
+            }
+          }
+        }
+     ```
+
 ## 9. Không nên sử dụng các biểu thức trong template
+- Việc sử dụng nhiều biểu thức trong template khiến code trở nên **phức tạp và lộn xộn**. Vì vậy hãy làm cho template **đơn giản** hơn, thông qua việc sử dụng `computed`
+- Ví dụ:
+     ```
+     BAD!
+       <template>
+        {{ fullName.split(' ').map(function (word) { 
+          return word[0].toUpperCase() + word.slice(1); 
+        }).join(' ') }}
+       </template>
+  
+     GOOD!
+       <template>
+        {{ normalizedFullName }}
+       </template>
+      
+       <script>
+         export default {
+           // The complex expression has been moved to a computed property
+           computed: {
+             normalizedFullName() {
+               return this.fullName
+                 .split(' ')
+                 .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                 .join(' ');
+             }
+           }
+         }
+       </script>
+     ```
+
 ## 10. Gọi API trong action và commit data (Vuex)
+- Sử dụng Vuex `actions` để thực hiện phần lớn các lệnh gọi API vì chúng giúp lấy dữ liệu **dễ dàng** hơn rất nhiều và cung cấp mức độ có thể **tái sử dụng** và **đóng gói**.
+- Ví dụ nếu ở 2 trang mà call **cùng** 1 API thì chúng ta phải gọi lại API đó ở 2 page, dẫn đến **bị trùng lặp** code ở đây. Nếu bạn đã call api đó ở `action` thì chúng ta chỉ cần `dispatch action` đó là xong.
+- Từ ví dụ trên chúng ta sẽ thấy **code logic** và **clear** hơn khi chúng ta biết API chúng ta gọi đang ở đâu.
+
+  *Note: Hiện tại các dự án của Precision cũng đang sử dụng phương pháp này*
+
 ## 11. Sử dụng slot cho component
+- `Slots` là các không gian được cung cấp bởi Vuejs để hiển thị nội dung được truyền từ **thành phần này** sang **thành phần khác**.
+- Nổi bật qua việc làm cho các components của bạn có **thể tái sử dụng** và **dễ bảo trì hơn**
+- Ở ví dụ dưới đây, component temp đang sử dụng component `componentSlot` và truyền nội dung qua 3 `slot` là **header**, **default** và **footer**
+
+  ![image](https://github.com/user-attachments/assets/d3ec6ea0-4f53-44f3-a190-ec87bda268f4)
+
 ## 12. Sử dụng mapState, mapGetters, mapMutations and mapActions
+- Thông thường khi cần truy cập `state`, `getters`, hay `dispatch action` trong một component ta cần tạo nhiều `computed properties` hoặc `methods`
+- Nhưng thay vào đó sử dụng `mapState`, `mapGetters`, `mapMutations` and `mapActions` có thể giúp bạn **rút ngắn đoạn code** và làm mọi thứ **dễ hiểu hơn** bằng cách nhóm những gì đến từ các `store modules` vào một nơi
+
+  ![image](https://github.com/user-attachments/assets/afd837e8-abf9-44e1-941f-64d1b4ec3d3b)
 
 # III. Kết thúc
-- Done
+- *Mong rằng tài liệu này sẽ đồng hành cùng bạn trên con đường khám phá và ứng dụng những kiến thức mới. Chúc bạn không chỉ hiểu mà còn áp dụng thành công những gì đã học, để mỗi bước đi trong công việc và cuộc sống đều đầy tự tin và sáng tạo. Hãy luôn tiến về phía trước, không ngừng học hỏi và phát triển.* :stuck_out_tongue_winking_eye:
 
+:pencil:: **Liêm King**
