@@ -48,7 +48,6 @@
     Những commit tiếp theo sẽ thực hiện như sau: 
     refs #xxxxxx nội dung chỉnh sửa của commit này
     ```
-  - Ví dụ:
 - Kiểm tra **kết quả**
 - Tạo merge request **daft** và đưa **Thái** review code và test lại (Nếu review **OK** thì đi tiếp, còn **chưa** được thì chỉnh sửa lại và nhờ review lại)
 - **Bỏ daft** ở merge request và trả task lại cho KH.
