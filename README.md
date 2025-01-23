@@ -32,7 +32,7 @@
 
     ```
     Task của ông Hino, Tanaka sẽ tạo từ staging và đặt tên là ft-xxxxxx
-    Task của ông Naka thì tạo từ dev và đặt tên là dev-xxx
+    Task của ông Naka thì tạo từ dev và đặt tên là dev-xxxxxx
     ```
   - Ở source `cds-monshin-app-ver2` và `cds-pre-monshin-ver2`:
 
